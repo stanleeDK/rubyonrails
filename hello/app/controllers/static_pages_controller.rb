@@ -3,5 +3,6 @@ class StaticPagesController < ApplicationController
   end
 
   def help
+  	@message = "How can we help you?"
   end
 end

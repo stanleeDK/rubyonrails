@@ -1,13 +1,24 @@
 
 <%provide(:title,"Home")%>
-<html>
+<!-- <html>
   <head>
-    <!-- <title>Home | Ruby on Rails Tutorial Sample App</title> -->
-    <title><%=yield(:title)%> | Ruby on Rails Tutorial Sample App</title>
+ -->    <!-- <title>Home | Ruby on Rails Tutorial Sample App</title> -->
+<!--     <title><%=yield(:title)%> | Ruby on Rails Tutorial Sample App</title>
   </head>
   <body>
-	<h1>StaticPages#home</h1>
-	<p>Find me in app/views/static_pages/home.html.erb</p>
-	<p><%=@message%></p>
-</body>
-</html>
+ -->	
+ <!-- <h1>StaticPages#home</h1>
+ -->	
+
+
+	<div class="center jumbotron">
+		 <p>Find me in app/views/static_pages/home.html.erb</p>
+		<p><%=@message%></p>
+		<h2>Home Page!!</h2>
+		<%= link_to "Sign up now", "#", class:"btn btn-lg btn-primary" %>
+	</div>
+
+	<%= link_to image_tag("rails.png", alt:"rails logo"), "http://rubyonrails.org" %>
+
+<!-- </body>
+</html> -->

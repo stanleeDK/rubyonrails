@@ -1,2 +1,2 @@
 # rubyonrails
-HelloWorld
+Learning Ruby on Rails! My first hello world app. 

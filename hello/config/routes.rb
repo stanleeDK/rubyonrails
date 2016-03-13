@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'help'      => 'static_pages#help'
   get 'about'     => 'static_pages#about'
   get 'contactus' => 'static_pages#contactus'
+  get 'signup'    => 'users#new'
 
   #example of difference ways to direct requests to controllers and the methods within them 
   #root 'application#hello'

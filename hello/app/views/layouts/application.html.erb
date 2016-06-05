@@ -3,13 +3,25 @@
 <head>
 	<title><%=yield(:title)%> | Ruby on Rails Tutorial Sample App</title>
  	<!--  <title>Hello</title> -->
+
   	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<!-- this is a rails method call which inserts this: 
+      "<link data-turbolinks-track="true" href="/assets/application.css" media="all" rel="stylesheet" />"
+
+ 		Rails looks at this and calls the style_link_tag function, passes in a string which tells it where the css is /application, it sends in a hash (when a hash is the last parameter in a method call the curly brackets are optional. The hash takes media and data-turbolinks-track as keys. The values follow afterwards, and they reason to use different notation for the values is annoyting)	-->
+
   	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   	<%= csrf_meta_tags %>
+
 </head>
 <body>
-
-<%= yield %>
-
+    <%= render "layouts/header" %>
+    <div class="container">
+      <%= yield %>
+      <%= render "layouts/footer" %>
+    </div>
+    <%= debug(params) if Rails.env.development? %>
+     
 </body>
+
 </html>

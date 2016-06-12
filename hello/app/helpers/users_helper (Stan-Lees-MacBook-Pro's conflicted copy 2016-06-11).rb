@@ -1,7 +1,7 @@
 module UsersHelper
 
 	# Returns the Gravatar (http://gravatar.com/) for the given user.
-	def load_user_avatar(user)
+	def peppe_pig(user)
 		#gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
 		#logger.debug "#{@user.id}"
 		if user.id == 1 

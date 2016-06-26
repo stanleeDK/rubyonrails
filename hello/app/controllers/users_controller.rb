@@ -5,12 +5,13 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    p @users 
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    puts "test"
+    @user = User.find(params[:id])  
   end
 
   # GET /users/new
@@ -25,26 +26,32 @@ class UsersController < ApplicationController
   def testrender
     # render "static_pages/home"
     render text: "OK"
-
   end 
 
   # POST /users
   # POST /users.json
   def create
 
+    puts "hello"
+    p user_params
     @user = User.new(user_params)
+    p @user
+    if @user.save 
+      redirect_to @user
+    end 
+
+    
     # @user = User.new(params[:user])
     # @user = User.new( name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")    
-    # puts params[:user]
+    
 
-
-    if params[:user][:name] == ""
-      render :new
-    else
-        @user.save 
-        # redirect_to(@user)
-        render :show
-    end 
+    # if params[:user][:name] == ""
+    #   render :new
+    # else
+    #     @user.save 
+    #     # redirect_to(@user)
+    #     render :show
+    # end 
 
     # respond_to do |format|
     #   if @user.save
@@ -89,6 +96,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end

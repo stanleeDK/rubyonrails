@@ -81,7 +81,10 @@ footer ul li {
   margin-left: 15px;
 }
 
-
+div.row {
+  margin-left: 300px;
+  margin-right: 300px;
+}
 
 /* mixins, variables, etc. */ 
 
@@ -124,7 +127,10 @@ aside {
 }
 
 
-input, textarea, select, .uneditable-input { 
+input, 
+textarea, 
+select, 
+.uneditable-input { 
   border: 1px solid #bbb;
   width: 100%;
   padding: 10px;

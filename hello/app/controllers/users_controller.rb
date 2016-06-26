@@ -22,21 +22,39 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def testrender
+    # render "static_pages/home"
+    render text: "OK"
+
+  end 
+
   # POST /users
   # POST /users.json
   def create
+
     @user = User.new(user_params)
-    puts "testing user_params" 
-    puts user_params
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    # @user = User.new(params[:user])
+    # @user = User.new( name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")    
+    # puts params[:user]
+
+
+    if params[:user][:name] == ""
+      render :new
+    else
+        @user.save 
+        # redirect_to(@user)
+        render :show
+    end 
+
+    # respond_to do |format|
+    #   if @user.save
+    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /users/1

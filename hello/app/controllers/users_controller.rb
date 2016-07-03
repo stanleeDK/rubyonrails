@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+  
 
   def testrender
     # render "static_pages/home"
@@ -32,10 +33,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
 
-    puts "hello"
-    p user_params
+    # puts "hello"
+    # p user_params
     @user = User.new(user_params)
-    p @user
+    # p @user
     if @user.save 
       redirect_to @user
     end 

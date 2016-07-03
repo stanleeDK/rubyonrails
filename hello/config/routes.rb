@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   # get 'static_pages/help'
   # get 'static_pages/contactus'
 
-  resources :microposts
-  resources :users
+
+  # using the resources method 
+  resources(:microposts)
+  resources(:users)
 
 end
+

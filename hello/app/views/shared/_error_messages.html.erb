@@ -1,5 +1,8 @@
 <% if @user.errors.any? %>
-	<div id="error explanation">
+	<div id="error_explanation">
+	<script type="text/javascript">
+		alert ("rails just inserted this partial!")
+	</script>
 		<div class="alert alert-error">
 			The form contains <%= pluralize(@user.errors.count, "error") %>.
 		</div>
@@ -10,15 +13,3 @@
 		</ul>
 	</div>
 <% end %>
-
-
-# <% if @user.errors.any? %> 
-# <div id="error explanation">
-# <div class="alert alert-error">
-# The form contains <%= pluralize(@user.errors.count, "error") %>.
-# </div>
-# <ul>
-# <% @user.errors.full messages.each do |msg| %>
-# <li>* <%= msg %></li> <% end %>
-# </ul>
-# </div> <% end %>

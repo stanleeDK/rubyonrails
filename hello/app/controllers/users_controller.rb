@@ -33,19 +33,19 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
 
-    # puts "hello"
     # p user_params
     @user = User.new(user_params)
     # p @user
     if @user.save 
+      flash[:success] = "Welcome to this amazing website!"
       redirect_to @user
+    else 
+      render :new
     end 
 
-    
+    # -- EXPERIMENTAL CODE START -- 
     # @user = User.new(params[:user])
     # @user = User.new( name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")    
-    
-
     # if params[:user][:name] == ""
     #   render :new
     # else
@@ -53,7 +53,9 @@ class UsersController < ApplicationController
     #     # redirect_to(@user)
     #     render :show
     # end 
+    # -- EXPERIMENTAL CODE END -- 
 
+    # -- DEFAULT CODE START -- 
     # respond_to do |format|
     #   if @user.save
     #     format.html { redirect_to @user, notice: 'User was successfully created.' }

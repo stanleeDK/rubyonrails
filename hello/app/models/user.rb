@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 	# has_many :microposts
 
-	# before_save { |user| user.email = email.downcase }
+	before_save { |user| user.email = email.downcase }
 
 	# Rails DOESN'T LIKE att_accessor. You don't need them to define the attributes. You do that using the migrations. 
 	# attr_accessor :name, :email, :password, :password_confirmation

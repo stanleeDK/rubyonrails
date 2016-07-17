@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+  class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
-  
+
 
   def testrender
     # render "static_pages/home"
@@ -33,17 +33,16 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
 
+    # puts "hello"
     # p user_params
-    @user = User.new(user_params)
+    @user = User.new(user_params) #user_params is a function below 
     # p @user
     if @user.save 
-      flash[:success] = "Welcome to this amazing website!"
+      sign_in(@user)
       redirect_to @user
-    else 
-      render :new
     end 
 
-    # -- EXPERIMENTAL CODE START -- 
+    
     # @user = User.new(params[:user])
     # @user = User.new( name: "Foo Bar", email: "foo@invalid", password: "foo", password_confirmation: "bar")    
     # if params[:user][:name] == ""
@@ -53,9 +52,8 @@ class UsersController < ApplicationController
     #     # redirect_to(@user)
     #     render :show
     # end 
-    # -- EXPERIMENTAL CODE END -- 
 
-    # -- DEFAULT CODE START -- 
+    # -- original auto generated code -- 
     # respond_to do |format|
     #   if @user.save
     #     format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -99,6 +97,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_token)
     end
 end

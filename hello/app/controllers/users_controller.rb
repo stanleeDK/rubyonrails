@@ -1,11 +1,14 @@
   class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  
+  before_action(:set_user, only: [:show, :edit, :update, :destroy])
+  before_filter(:signed_in_user, :only =>[:edit,:update, :index]) #before invoking edit() or update(), or index() call signed_in_user
+
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    p @users 
+    # @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -68,15 +71,23 @@
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      @user = User.find(params[:id])    
+      p @user
+
+      # p params[:user]
+      
+      # @user.update(user_params2)
+      if @user.update_attribute(:name,params[:user][:name]) && 
+         @user.update_attribute(:email,params[:user][:email]) &&
+         @user.authenticate(params[:user][:password])
+          flash[:success] = "Profile Updated"
+          redirect_to @user
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+          flash[:success] = "Password is wrong"
+          redirect_to @user
       end
-    end
+      
+    
   end
 
   # DELETE /users/1
@@ -90,6 +101,14 @@
   end
 
   private
+    # This function is called every time a user tries to access an edit page http://localhost:3000/users/6/edit
+    def signed_in_user 
+      if signed_in? == false
+        flash[:success] = "Please sign in!"
+        redirect_to(signin_path)
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -99,4 +118,5 @@
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :remember_token)
     end
+
 end

@@ -1,0 +1,11 @@
+
+	<a href="<%= user_path(current_user) %>">User Name</a> 
+	<h1>You're currently signed in as:</h1>
+	<h2><%= current_user.name %> </h2>
+	<h2>
+		<%= pluralize(current_user.microposts.count, "micropost") %> 
+	</h2>
+	<span>
+		<%= link_to "view profile", current_user %> 
+	</span>
+	</br>

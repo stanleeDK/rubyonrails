@@ -3,7 +3,7 @@
 
 
 class User < ActiveRecord::Base
-	# has_many :microposts
+	has_many :microposts, dependent: :destroy
 
 	before_save { |user| user.email = email.downcase }
 	before_save :create_remember_token
@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
 	# this is a method that comes for free with rails. As long as you did the 
 	# password digest migration, then this will map a string password to the hash in the db
 	has_secure_password()
+
+	def feed
+		Micropost.where("user_id =?",id)
+	end
 
 	private 
 	

@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="span6 offset3">
 	<%= form_for(@user) do |f| %> 
-		<%= render 'shared/error_messages' %> <!-- This calls a partial erb to show any error messages raised by the model -->
+		<%= render 'shared/error_messages',object: f.object %> <!-- This calls a partial erb to show any error messages raised by the model -->
 		<%= f.label :name %>
 		<%= f.text_field :name %> 
 		<%= f.label :email %>

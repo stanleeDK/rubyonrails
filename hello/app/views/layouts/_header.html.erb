@@ -8,7 +8,7 @@
               <% if signed_in? %>
                                    
                   <li><a href="/Profile">Profile</a></li>
-                  <li><a href="/Profile">Settings</a></li>
+                  <li><%= link_to "Profile", current_user %></li>
                   <li><a href="/Profile">hello</a></li>
               <% else %>
                    <li><%= link_to "Log in", signin_path %></li>

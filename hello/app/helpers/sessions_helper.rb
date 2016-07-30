@@ -9,7 +9,8 @@ def sign_in(user)
 	
 	# this line allows the current user to be accessible in the view and the main controller file
 	# It uses the assignment operator thanks for the function current_user=() method defined below which
-	# does the actual instance variable assignment. 
+	# does the actual instance variable assignment. @current_user is still the instance variable but
+	# you now user current_user= and current_user to set and retrieve it in the view or the controller
 	self.current_user = user 
 end
 
@@ -24,6 +25,15 @@ def signed_in?
 	
 end 
 
+# This function is called every time a user tries to access an 
+#  edit page http://localhost:3000/users/6/edit and asks them to sign in 
+def signed_in_user 
+  if signed_in? == false
+    flash[:success] = "Please sign in!"
+    redirect_to(signin_path)
+  end
+end
+
 def sign_out
 	self.current_user = nil
 	cookies.delete(:remember_token)
@@ -31,6 +41,14 @@ end
 
 def current_user=(user)
 	@current_user = user 
+end
+
+def current_user?(user)
+	if user == @current_user
+		true
+	else
+		false
+	end
 end
 
 # return the current user. To do so, it finds the current user via the token in the db (via the active record find_by method)

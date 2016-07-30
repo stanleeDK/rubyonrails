@@ -14,8 +14,14 @@ Rails.application.routes.draw do
   
 # the "resources()" This automatically creates 7 paths for you which 
 # map to the http verbs. 
-  resources(:microposts) #just demonstrating how to invoke it with or without brackets
   resources :users
+
+#just demonstrating how to invoke it with or without brackets, and limiting the automatic routes to crreat and destroy 
+  resources(:microposts, only: [:create, :destroy]) 
+# the :microposts resources line above creates the following routes:
+# create = POST = /microposts 
+# destroy = microposts/1 
+
   
 # Limiting the routes which map to methods of the sessions controller to only 
 # GET -> new (aka signin_path) (HTTP verb, controller method, rails auto-generated method)

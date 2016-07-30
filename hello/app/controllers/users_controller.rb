@@ -1,20 +1,24 @@
   class UsersController < ApplicationController
   
   before_action(:set_user, only: [:show, :edit, :update, :destroy])
-  before_filter(:signed_in_user, :only =>[:edit,:update, :index]) #before invoking edit() or update(), or index() call signed_in_user
+
+  # before invoking edit() or update(), or index() call signed_in_user
+  # the before filter is a spot where you can specify method calls to happen prior to the :edit :update :index methods being called 
+  before_filter(:signed_in_user, :only =>[:edit,:update, :index]) 
 
 
   # GET /users
   # GET /users.json
   def index
-    # @users = User.all
-    @users = User.paginate(page: params[:page])
+    @users = User.all
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    puts "Show()"
     @user = User.find(params[:id])  
+    @microposts = @user.microposts
   end
 
   # GET /users/new
@@ -101,16 +105,12 @@
   end
 
   private
-    # This function is called every time a user tries to access an edit page http://localhost:3000/users/6/edit
-    def signed_in_user 
-      if signed_in? == false
-        flash[:success] = "Please sign in!"
-        redirect_to(signin_path)
-      end
-    end
+
 
     # Use callbacks to share common setup or constraints between actions.
+    # in this case set up an instance variable using the id from the url to help determine the current user 
     def set_user
+      puts "STAN THE MANNNNNNNNNNN"
       @user = User.find(params[:id])
     end
 
